@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>甄嬛传台词小测验</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg-main: #1c0b0b;
+        --bg-panel: #2b1512;
+        --bg-question: #3a1b15;
+        --border-gold: #d4af37;
+        --text-main: #f7e9d6;
+        --accent: #e0b15b;
+        --accent-strong: #f4c97a;
+        --danger: #f97373;
+        --success: #4ade80;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        color: var(--text-main);
+        background:
+          radial-gradient(circle at 0 0, #5d2b19 0, transparent 50%),
+          radial-gradient(circle at 100% 100%, #5d2b19 0, transparent 55%),
+          var(--bg-main);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px 16px;
+      }
+      .page {
+        max-width: 960px;
+        width: 100%;
+        border: 1px solid rgba(212, 175, 55, 0.6);
+        border-radius: 18px;
+        background: radial-gradient(circle at top, #3a1b15 0, #140707 55%);
+        box-shadow:
+          0 20px 40px rgba(0, 0, 0, 0.6),
+          0 0 40px rgba(212, 175, 55, 0.3);
+        overflow: hidden;
+      }
+      .header {
+        padding: 16px 24px 8px;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+      }
+      .header-main {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .title {
+        font-size: 26px;
+        letter-spacing: 0.24em;
+        text-indent: 0.24em;
+        font-weight: 600;
+      }
+      .subtitle {
+        font-size: 13px;
+        color: rgba(247, 233, 214, 0.86);
+      }
+      .seal {
+        border: 2px solid var(--border-gold);
+        color: var(--accent-strong);
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 12px;
+        letter-spacing: 0.24em;
+        text-indent: 0.24em;
+        white-space: nowrap;
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
+        gap: 0;
+      }
+      @media (max-width: 768px) {
+        .layout {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .sidebar {
+          border-left: none;
+          border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+      }
+      .main {
+        padding: 16px 20px 18px;
+      }
+      #quiz {
+        max-width: 100%;
+        margin: 0;
+      }
+      .question-block {
+        margin-bottom: 14px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        background: radial-gradient(circle at top left, #4d2119 0, #2a1310 60%);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+      }
+      .question-block strong {
+        display: inline-block;
+        margin-bottom: 4px;
+        color: var(--accent-strong);
+      }
+      .question-block:nth-child(odd) {
+        background: radial-gradient(circle at top right, #4a2018 0, #241010 60%);
+      }
+      label {
+        cursor: pointer;
+        font-size: 14px;
+      }
+      label input {
+        margin-right: 6px;
+      }
+      .feedback {
+        min-height: 18px;
+      }
+      .option-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .option-row img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1px solid rgba(212, 175, 55, 0.7);
+      }
+      .hint-row {
+        margin-top: 4px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+      }
+      .hint-btn {
+        padding: 2px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(212, 175, 55, 0.7);
+        background: transparent;
+        color: var(--accent-strong);
+        cursor: pointer;
+        font-size: 12px;
+      }
+      .hint-btn:hover {
+        background: rgba(212, 175, 55, 0.12);
+      }
+      .hint-text {
+        color: rgba(247, 233, 214, 0.9);
+      }
+      .sidebar {
+        padding: 16px 18px 18px;
+        border-left: 1px solid rgba(212, 175, 55, 0.24);
+        background: linear-gradient(180deg, #261010 0, #1b0c0c 80%);
+      }
+      .sidebar-title {
+        font-size: 15px;
+        margin-bottom: 6px;
+        color: var(--accent-strong);
+      }
+      .sidebar-text {
+        font-size: 13px;
+        line-height: 1.7;
+        color: rgba(247, 233, 214, 0.86);
+        margin-bottom: 10px;
+      }
+      .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 12px;
+      }
+      .tag {
+        border-radius: 999px;
+        border: 1px solid rgba(212, 175, 55, 0.6);
+        padding: 2px 8px;
+        font-size: 11px;
+        color: var(--accent-strong);
+      }
+      #submitBtn {
+        display: block;
+        margin: 10px auto 4px;
+        padding: 8px 26px;
+        font-size: 15px;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        background: radial-gradient(circle at top, #f4c97a 0, #c28a3a 70%);
+        color: #3b160b;
+        cursor: pointer;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-indent: 0.12em;
+        box-shadow: 0 5px 14px rgba(0, 0, 0, 0.6);
+      }
+      #submitBtn:hover {
+        background: radial-gradient(circle at top, #ffe09b 0, #d89b3f 70%);
+        transform: translateY(-1px);
+      }
+      #submitBtn:active {
+        transform: translateY(0);
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
+      }
+      #result {
+        text-align: center;
+        font-size: 16px;
+        margin-top: 6px;
+        min-height: 22px;
+      }
+      .footer {
+        border-top: 1px solid rgba(212, 175, 55, 0.3);
+        padding: 6px 14px 8px;
+        font-size: 11px;
+        color: rgba(247, 233, 214, 0.7);
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <div class="header-main">
+          <div class="title">甄嬛传 · 台词宫闱问答</div>
+          <div class="subtitle">借一段台词，重回华妃笑、皇后泪、甄嬛叹的深宫旧梦。</div>
+        </div>
+        <div class="seal">宫廷卷一 · 台词谁说</div>
+      </header>
+
+      <div class="layout">
+        <main class="main">
+          <div id="quiz"></div>
+          <button id="submitBtn">提交答案</button>
+          <div id="result"></div>
+        </main>
+
+        <aside class="sidebar">
+          <div class="sidebar-title">玩法提示</div>
+          <p class="sidebar-text">
+            每题给出一句《甄嬛传》经典台词，你需要在三位候选主子中，选出真正说出这句话的人。
+          </p>
+          <div class="tag-list">
+            <span class="tag">甄嬛</span>
+            <span class="tag">皇后 · 宜修</span>
+            <span class="tag">华妃 · 年氏</span>
+            <span class="tag">安陵容</span>
+            <span class="tag">沈眉庄</span>
+            <span class="tag">果郡王</span>
+          </div>
+          <p class="sidebar-text">
+            做完后点击「提交答案」，可查看本次宫闱小考的得分，以及每题的对错与正确主子。
+          </p>
+        </aside>
+      </div>
+
+      <footer class="footer">
+        <span>非官方粉丝小测 · 仅为回味剧情与角色魅力</span>
+        <span>卷毕可再战一回，看看你是不是“甄学家”</span>
+      </footer>
+    </div>
+
+    <script>
+      // 角色名与头像路径映射（只为出现过的关键人物配置）
+      const characterImages = {
+        "甄嬛": "images/zhenhuan.png",
+        "皇后（乌拉那拉·宜修）": "images/huanghou_yixiu.png",
+        "华妃（年世兰）": "images/huafei.png",
+        "安陵容": "images/anlingrong.png",
+        "沈眉庄": "images/shenmeizhuang.png",
+        "端妃": "images/duanfei.png",
+        "果郡王（允礼）": "images/guojunwang.png",
+        "皇上（雍正帝）": "images/huangdi.png",
+        "苏培盛": "images/supeisheng.png",
+        "槿汐姑姑": "images/jinxi.png",
+        "浣碧": "images/huanbi.png",
+        "瓜六": "images/gualiu.png",
+        "敬妃": "images/jingfei.png"
+        // 其他人物暂不配置头像，将仅显示文字
+      };
+
+      // 使用更有代表性的台词意境，覆盖约 10 位主要人物，共 30 题
+      // 注意：台词中不出现明显的人名或“朕”等直接提示
+      // 每题增加 answerCharacter 字段，用于统计熟悉度
+      const questions = [
+        // 1–10：原有题目
+        {
+          text: "“你要的那一步，我这一生都迈不过去。”",
+          options: ["甄嬛", "皇后（乌拉那拉·宜修）", "安陵容"],
+          answerIndex: 1,
+          answerCharacter: "皇后（乌拉那拉·宜修）",
+          hint: "多年隐忍后的决绝一问"
+        },
+        {
+          text: "“本位分不允许我示弱，谁敢在我面前装可怜。”",
+          options: ["华妃（年世兰）", "甄嬛", "安陵容"],
+          answerIndex: 0,
+          answerCharacter: "华妃（年世兰）",
+          hint: "惯于盛气凌人的宠贵口吻"
+        },
+        {
+          text: "“若能早些看透这世道，我宁愿从未踏进宫门。”",
+          options: ["甄嬛", "沈眉庄", "端妃"],
+          answerIndex: 0,
+          answerCharacter: "甄嬛",
+          hint: "看清荣宠代价后的自省"
+        },
+        {
+          text: "“小心翼翼守了一世，到头来不过是一场笑话。”",
+          options: ["皇后（乌拉那拉·宜修）", "甄嬛", "华妃（年世兰）"],
+          answerIndex: 0,
+          answerCharacter: "皇后（乌拉那拉·宜修）",
+          hint: "长年如履薄冰后的冷笑"
+        },
+        {
+          text: "“出身低微的人，懂得讨好，是为了活下去。”",
+          options: ["安陵容", "甄嬛", "皇后（乌拉那拉·宜修）"],
+          answerIndex: 0,
+          answerCharacter: "安陵容",
+          hint: "低位出身者心底的算计"
+        },
+        {
+          text: "“这一世若能携手江湖，胜过金殿万般荣华。”",
+          options: ["果郡王（允礼）", "皇上（雍正帝）", "甄嬛"],
+          answerIndex: 0,
+          answerCharacter: "果郡王（允礼）",
+          hint: "常把远方与自由挂在嘴边"
+        },
+        {
+          text: "“这山河社稷，要我舍下一切儿女情长。”",
+          options: ["皇上（雍正帝）", "果郡王（允礼）", "皇后（乌拉那拉·宜修）"],
+          answerIndex: 0,
+          answerCharacter: "皇上（雍正帝）",
+          hint: "更看重天下而非一人悲欢"
+        },
+        {
+          text: "“与其争一时宠爱，不如守住自己的清白和安稳。”",
+          options: ["沈眉庄", "甄嬛", "敬妃"],
+          answerIndex: 0,
+          answerCharacter: "沈眉庄",
+          hint: "向来不喜争锋却守礼周全"
+        },
+        {
+          text: "“在这深墙之内，活着本身就是一道难题。”",
+          options: ["端妃", "太后", "甄嬛"],
+          answerIndex: 0,
+          answerCharacter: "端妃",
+          hint: "久居偏殿，对世事一目了然"
+        },
+        {
+          text: "“若到最后什么都留不住，也别叫旁人如愿。”",
+          options: ["华妃（年世兰）", "安陵容", "皇后（乌拉那拉·宜修）"],
+          answerIndex: 0,
+          answerCharacter: "华妃（年世兰）",
+          hint: "爱恨极端的人说得出这样的话"
+        },
+        // 11–20：更多主角相关台词
+        {
+          text: "“我真正想做的，只是那个从前无忧的人。”",
+          options: ["甄嬛", "安陵容", "沈眉庄"],
+          answerIndex: 0,
+          answerCharacter: "甄嬛",
+          hint: "曾经单纯，如今回望自觉陌生"
+        },
+        {
+          text: "“曾经求而不得，如今不过是心如止水。”",
+          options: ["甄嬛", "皇后（乌拉那拉·宜修）", "华妃（年世兰）"],
+          answerIndex: 0,
+          answerCharacter: "甄嬛",
+          hint: "曾将一句“求不得”记在心里"
+        },
+        {
+          text: "“被夺走的荣耀，总有一日要亲手讨回来。”",
+          options: ["华妃（年世兰）", "皇后（乌拉那拉·宜修）", "安陵容"],
+          answerIndex: 0,
+          answerCharacter: "华妃（年世兰）",
+          hint: "一味执着于权势荣耀的性子"
+        },
+        {
+          text: "“这地方从来讲的是利字，理字只能靠边站。”",
+          options: ["皇后（乌拉那拉·宜修）", "太后", "甄嬛"],
+          answerIndex: 0,
+          answerCharacter: "皇后（乌拉那拉·宜修）",
+          hint: "最明白“利”字比“情”字重要的人"
+        },
+        {
+          text: "“在这里，别人给你的，随时也能收回去。”",
+          options: ["太后", "皇后（乌拉那拉·宜修）", "甄嬛"],
+          answerIndex: 0,
+          answerCharacter: "太后",
+          hint: "见得多了，对人情冷暖早已看透"
+        },
+        {
+          text: "“我所盼望的，不过是身边的人都能平安无事。”",
+          options: ["沈眉庄", "敬妃", "端妃"],
+          answerIndex: 0,
+          answerCharacter: "沈眉庄",
+          hint: "把安稳看得比高位更重的人"
+        },
+        {
+          text: "“你心思太重，迟早会被这份执念拖入深渊。”",
+          options: ["沈眉庄", "甄嬛", "华妃（年世兰）"],
+          answerIndex: 0,
+          answerCharacter: "沈眉庄",
+          hint: "比旁人更看得清他人执念"
+        },
+        {
+          text: "“柔弱的外表，最容易让人忘了刀也可以藏在袖里。”",
+          options: ["安陵容", "甄嬛", "敬妃"],
+          answerIndex: 0,
+          answerCharacter: "安陵容",
+          hint: "温柔外表下也藏着锋利心思"
+        },
+        {
+          text: "“自从迈进宫门那一刻起，很多路就再也回不了头。”",
+          options: ["甄嬛", "敬妃", "端妃"],
+          answerIndex: 0,
+          answerCharacter: "甄嬛",
+          hint: "曾经天真相许，后来只剩感慨"
+        },
+        {
+          text: "“当信任崩塌时，再多柔情蜜语也只是空言。”",
+          options: ["甄嬛", "皇后（乌拉那拉·宜修）", "安陵容"],
+          answerIndex: 0,
+          answerCharacter: "甄嬛",
+          hint: "尝过被辜负后才懂信任之重"
+        },
+        // 21–30：更多配角与皇帝、果郡王相关
+        {
+          text: "“身在高位之人，难得只做一个普通丈夫。”",
+          options: ["皇上（雍正帝）", "果郡王（允礼）", "太后"],
+          answerIndex: 0,
+          answerCharacter: "皇上（雍正帝）",
+          hint: "时常在情与势之间权衡的人"
+        },
+        {
+          text: "“在你眼里，我不过是个被遗忘在角落的人。”",
+          options: ["皇后（乌拉那拉·宜修）", "华妃（年世兰）", "安陵容"],
+          answerIndex: 0,
+          answerCharacter: "皇后（乌拉那拉·宜修）",
+          hint: "名义尊贵却常觉被搁在一旁"
+        },
+        {
+          text: "“与其信公道，不如信人心的深浅冷暖。”",
+          options: ["皇后（乌拉那拉·宜修）", "太后", "甄嬛"],
+          answerIndex: 0,
+          answerCharacter: "皇后（乌拉那拉·宜修）",
+          hint: "最不信“公道”二字的一位"
+        },
+        {
+          text: "“你总把所有事往自己身上揽，这才是最累的地方。”",
+          options: ["甄嬛", "沈眉庄", "敬妃"],
+          answerIndex: 0,
+          answerCharacter: "甄嬛",
+          hint: "总想替身边人分担太多的人"
+        },
+        {
+          text: "“若有一日轮到我说了算，我盼着旁人不再经历今日之苦。”",
+          options: ["敬妃", "甄嬛", "端妃"],
+          answerIndex: 0,
+          answerCharacter: "敬妃",
+          hint: "性情温厚，却也有自己的坚持"
+        },
+        {
+          text: "“我并非喜好争斗，只是被逼急了也会伸手。”",
+          options: ["端妃", "华妃（年世兰）", "皇后（乌拉那拉·宜修）"],
+          answerIndex: 0,
+          answerCharacter: "端妃",
+          hint: "表面淡漠，实际心思极深"
+        },
+        {
+          text: "“你们只管伺候好了，别叫主子操心。”",
+          options: ["苏培盛", "瓜六", "浣碧"],
+          answerIndex: 0,
+          answerCharacter: "苏培盛",
+          hint: "最会揣摩上意的内侍"
+        },
+        {
+          text: "“跟在她身边久了，连我都舍不得放手。”",
+          options: ["槿汐姑姑", "浣碧", "沈眉庄"],
+          answerIndex: 0,
+          answerCharacter: "槿汐姑姑",
+          hint: "一半是侍女一半像长辈"
+        },
+        {
+          text: "“我也不过想求一个靠得住的前程。”",
+          options: ["浣碧", "安陵容", "敬妃"],
+          answerIndex: 0,
+          answerCharacter: "浣碧",
+          hint: "既羡慕高位也在意出身"
+        },
+        {
+          text: "“小人物的性命，往往连说话的份都没有。”",
+          options: ["瓜六", "苏培盛", "果郡王（允礼）"],
+          answerIndex: 0,
+          answerCharacter: "瓜六",
+          hint: "常被差遣东奔西跑的小人物"
+        }
+      ];
+
+      const quizContainer = document.getElementById("quiz");
+      const resultContainer = document.getElementById("result");
+      const submitBtn = document.getElementById("submitBtn");
+
+      const pageSize = 10; // 每轮展示 10 题
+      const totalPages = Math.ceil(questions.length / pageSize);
+      let currentPage = 0; // 从第 0 轮开始
+      let currentQuestions = [];
+      let hasGradedCurrent = false;
+      let cumulativeScore = 0;
+      let totalQuestionsCounted = 0;
+      const characterStats = {}; // { [characterName]: { correct, total } }
+
+      function buildQuiz() {
+        const start = currentPage * pageSize;
+        const end = Math.min(start + pageSize, questions.length);
+        currentQuestions = questions.slice(start, end);
+
+        const html = currentQuestions
+          .map((q, index) => {
+            const optionsHtml = q.options
+              .map((name, i) => {
+                const id = `q${currentPage}_${index}_opt${i}`;
+                const imgSrc = characterImages[name];
+                const imgHtml = imgSrc
+                  ? `<img src="${imgSrc}" alt="${name}">`
+                  : "";
+                return `
+              <label for="${id}" style="display:block;margin:4px 0;">
+                <div class="option-row">
+                  <input type="radio" name="q${index}" id="${id}" value="${i}">
+                  ${imgHtml}
+                  <span>${String.fromCharCode(65 + i)}. ${name}</span>
+                </div>
+              </label>
+            `;
+              })
+              .join("");
+
+            const globalIndex = start + index;
+
+            const hintId = `hint-${currentPage}-${index}`;
+
+            return `
+          <div class="question-block">
+            <div><strong>第 ${globalIndex + 1} 题：</strong>${q.text}</div>
+            <div style="margin-top:6px;">${optionsHtml}</div>
+            <div class="feedback" id="fb${index}" style="margin-top:4px;font-size:0.9em;"></div>
+            <div class="hint-row">
+              <button type="button" class="hint-btn" data-idx="${index}">小小提示</button>
+              <span class="hint-text" id="${hintId}"></span>
+            </div>
+          </div>
+        `;
+          })
+          .join("");
+
+        quizContainer.innerHTML = html;
+
+        // 重置本轮状态
+        hasGradedCurrent = false;
+        resultContainer.textContent = "";
+        submitBtn.textContent = "提交本轮答案";
+      }
+
+      function handleSubmitClick() {
+        // 第一次点击：批改本轮
+        if (!hasGradedCurrent) {
+          let roundScore = 0;
+
+          currentQuestions.forEach((q, index) => {
+            const selector = `input[name="q${index}"]:checked`;
+            const userChoice = document.querySelector(selector);
+            const feedbackEl = document.getElementById(`fb${index}`);
+
+            if (!userChoice) {
+              feedbackEl.textContent = "未作答";
+              feedbackEl.style.color = "#999";
+              return;
+            }
+
+            const userIndex = parseInt(userChoice.value, 10);
+            const answerChar = q.answerCharacter;
+
+            // 初始化人物统计
+            if (answerChar && !characterStats[answerChar]) {
+              characterStats[answerChar] = { correct: 0, total: 0 };
+            }
+
+            if (answerChar && characterStats[answerChar]) {
+              characterStats[answerChar].total += 1;
+            }
+
+            if (userIndex === q.answerIndex) {
+              roundScore++;
+              feedbackEl.textContent = "回答正确 ✔";
+              feedbackEl.style.color = "#4ade80";
+              if (answerChar && characterStats[answerChar]) {
+                characterStats[answerChar].correct += 1;
+              }
+            } else {
+              feedbackEl.textContent =
+                "回答错误 ✘，正确答案是 " +
+                String.fromCharCode(65 + q.answerIndex) +
+                ". " +
+                q.options[q.answerIndex];
+              feedbackEl.style.color = "#f97373";
+            }
+          });
+
+          cumulativeScore += roundScore;
+          totalQuestionsCounted += currentQuestions.length;
+
+          const remainingQuestions =
+            questions.length - (currentPage + 1) * pageSize;
+
+          let reportHtml =
+            "<p>本轮得分：" +
+            roundScore +
+            " / " +
+            currentQuestions.length +
+            "，累计得分：" +
+            cumulativeScore +
+            " / " +
+            totalQuestionsCounted +
+            "</p>";
+
+          // 若为最后一轮，生成宫闱小结
+          if (currentPage === totalPages - 1) {
+            const percent =
+              totalQuestionsCounted > 0
+                ? Math.round((cumulativeScore / totalQuestionsCounted) * 100)
+                : 0;
+
+            // 计算最熟悉 / 最不熟悉角色（按正确率）
+            let bestChar = null;
+            let bestRate = -1;
+            let worstChar = null;
+            let worstRate = 2;
+
+            Object.keys(characterStats).forEach((name) => {
+              const stat = characterStats[name];
+              if (!stat.total) return;
+              const rate = stat.correct / stat.total;
+              if (rate > bestRate) {
+                bestRate = rate;
+                bestChar = name;
+              }
+              if (rate < worstRate) {
+                worstRate = rate;
+                worstChar = name;
+              }
+            });
+
+            if (totalQuestionsCounted === 0) {
+              reportHtml +=
+                "<p>—— 宫闱小结：今科小考尚无人真正落笔作答，且待殿下择日再临。</p>";
+            } else {
+              reportHtml +=
+                "<p>—— 宫闱小结：今科小考已毕，殿下总分为 <strong>" +
+                percent +
+                " 分</strong>（满分 100）。</p>";
+
+              if (bestChar && worstChar && bestChar !== worstChar) {
+                const bestPct = Math.round(bestRate * 100);
+                const worstPct = Math.round(worstRate * 100);
+                reportHtml +=
+                  "<p>看殿下对「" +
+                  bestChar +
+                  "」一角最是熟稔，几乎句句都能道来（约 " +
+                  bestPct +
+                  "% 命中）；</p>";
+                reportHtml +=
+                  "<p>而「" +
+                  worstChar +
+                  "」的悲欢，却似还隔着一层珠帘，尚需日后多回味几遍剧中台词（约 " +
+                  worstPct +
+                  "% 命中）。</p>";
+              } else if (bestChar) {
+                const bestPct = Math.round(bestRate * 100);
+                reportHtml +=
+                  "<p>殿下对诸位主子倒是一视同仁，其中尤以「" +
+                  bestChar +
+                  "」一角最为了然于心（约 " +
+                  bestPct +
+                  "% 命中）。</p>";
+              } else {
+                reportHtml +=
+                  "<p>诸位主子在殿下心中一时难分高下，且待来日再试一回宫闱小考。</p>";
+              }
+            }
+          }
+
+          resultContainer.innerHTML = reportHtml;
+
+          hasGradedCurrent = true;
+
+          if (currentPage < totalPages - 1) {
+            const remaining =
+              questions.length - (currentPage + 1) * pageSize > 0
+                ? questions.length - (currentPage + 1) * pageSize
+                : questions.length - (currentPage + 1) * pageSize + pageSize;
+            submitBtn.textContent =
+              "进入下一轮（剩余约 " + Math.min(remaining, pageSize * (totalPages - currentPage - 1)) + " 题）";
+          } else {
+            submitBtn.textContent = "重新开始整套试题";
+          }
+        } else {
+          // 第二次点击：进入下一轮或重新开始
+          if (currentPage < totalPages - 1) {
+            currentPage++;
+            buildQuiz();
+          } else {
+            // 重置整套
+            currentPage = 0;
+            cumulativeScore = 0;
+            totalQuestionsCounted = 0;
+            buildQuiz();
+          }
+        }
+      }
+
+      buildQuiz();
+
+      // 为提示按钮添加事件（使用事件委托，避免每轮重复绑定过多监听）
+      quizContainer.addEventListener("click", (event) => {
+        const target = event.target;
+        if (!(target instanceof HTMLElement)) return;
+        if (!target.classList.contains("hint-btn")) return;
+
+        const idxStr = target.getAttribute("data-idx");
+        if (idxStr == null) return;
+        const index = parseInt(idxStr, 10);
+        const q = currentQuestions[index];
+        if (!q || !q.hint) return;
+
+        const hintId = `hint-${currentPage}-${index}`;
+        const span = document.getElementById(hintId);
+        if (!span) return;
+        span.textContent = q.hint;
+      });
+
+      submitBtn.addEventListener("click", handleSubmitClick);
+    </script>
+  </body>
+</html>
+

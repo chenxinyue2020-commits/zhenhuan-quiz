@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Missing Letters Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <div class="logo-area">
+          <div class="logo-letter logo-letter--m">M</div>
+          <div class="logo-letter logo-letter--i">I</div>
+          <div class="logo-letter logo-letter--s">S</div>
+          <div class="logo-letter logo-letter--s2">S</div>
+        </div>
+        <div class="header-text">
+          <h1>Missing Letters</h1>
+          <p>Can you find all the hidden letters?</p>
+        </div>
+      </header>
+
+      <main class="main">
+        <section class="card card--controls">
+          <h2>Game Setup</h2>
+          <div class="control-row">
+            <label for="difficulty">Difficulty</label>
+            <select id="difficulty">
+              <option value="easy">Easy</option>
+              <option value="medium" selected>Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
+          <div class="control-row">
+            <label for="player-name">Player name</label>
+            <input
+              id="player-name"
+              type="text"
+              placeholder="Type your name"
+              maxlength="20"
+            />
+          </div>
+          <button id="start-btn" class="btn btn-primary">
+            Start new word
+          </button>
+        </section>
+
+        <section class="card card--game" aria-live="polite">
+          <h2>Fill in the Missing Letters</h2>
+          <div id="status-bar" class="status-bar">
+            <div class="status-item">
+              <span class="status-label">Word #</span>
+              <span id="round-label" class="status-value">–</span>
+            </div>
+            <div class="status-item">
+              <span class="status-label">Tries left</span>
+              <span id="tries-label" class="status-value">–</span>
+            </div>
+            <div class="status-item">
+              <span class="status-label">Score</span>
+              <span id="score-label" class="status-value">0</span>
+            </div>
+          </div>
+
+          <div id="word-area" class="word-area">
+            <div id="masked-word" class="masked-word">
+              Press “Start new word” to play!
+            </div>
+          </div>
+
+          <div class="hint-row">
+            <button id="hint-btn" class="btn btn-secondary" disabled>
+              Get a hint ✨
+            </button>
+            <span id="hint-text" class="hint-text"></span>
+          </div>
+
+          <form id="guess-form" class="guess-form" autocomplete="off">
+            <label for="guess-input" class="guess-label">
+              Type the missing letters in order,
+              <span class="guess-label__or">or</span> guess the whole word:
+            </label>
+            <input
+              id="guess-input"
+              class="guess-input"
+              type="text"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="Example: ae  or  computer"
+              disabled
+            />
+            <button id="guess-btn" class="btn btn-accent" type="submit" disabled>
+              Check!
+            </button>
+          </form>
+
+          <div id="message" class="message"></div>
+        </section>
+
+        <section class="card card--help">
+          <h2>How to Play</h2>
+          <ul class="rules">
+            <li><strong>1.</strong> Pick a difficulty and press <strong>Start new word</strong>.</li>
+            <li>
+              <strong>2.</strong> Look at the word – some letters are hidden
+              with colorful <span class="rules-blank">_</span> blanks.
+            </li>
+            <li>
+              <strong>3.</strong> Type the <strong>missing letters in order</strong>
+              (like <code>ae</code>), or guess the <strong>whole word</strong>.
+            </li>
+            <li><strong>4.</strong> Use <strong>Get a hint ✨</strong> if you get stuck (it costs a try!).</li>
+            <li><strong>5.</strong> Win points for each correct word. Try to beat your high score!</li>
+          </ul>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span>Made for curious minds 🧠✨</span>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+  </html>
+
