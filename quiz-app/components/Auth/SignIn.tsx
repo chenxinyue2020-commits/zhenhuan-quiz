@@ -208,8 +208,7 @@ export default function SignIn() {
           type="submit"
           disabled={
             isLoading ||
-            (step === "code" && !code) ||
-            (step === "nickname" && !nickname.trim())
+            (step === "code" && (!code || !nickname.trim()))
           }
           className="w-full bg-[#c04843] text-white py-2.5 px-4 rounded-md font-medium
                      hover:bg-[#a63b36] disabled:opacity-60 disabled:cursor-not-allowed
