@@ -1,0 +1,241 @@
+export interface Question {
+  text: string;
+  options: string[];
+  answerIndex: number;
+  answerCharacter: string;
+  hint: string;
+}
+
+export const characterImages: Record<string, string> = {
+  甄嬛: "/images/zhenhuan.png",
+  "皇后（乌拉那拉·宜修）": "/images/huanghou_yixiu.png",
+  "华妃（年世兰）": "/images/huafei.png",
+  安陵容: "/images/anlingrong.png",
+  沈眉庄: "/images/shenmeizhuang.png",
+  端妃: "/images/duanfei.png",
+  "果郡王（允礼）": "/images/guojunwang.png",
+  "皇上（雍正帝）": "/images/huangdi.png",
+  太后: "/images/taihou.png",
+  苏培盛: "/images/supeisheng.png",
+  槿汐姑姑: "/images/jinxi.png",
+  浣碧: "/images/huanbi.png",
+  瓜六: "/images/gualiu.png",
+  敬妃: "/images/jingfei.png",
+};
+
+// 完整题库：30 道题
+export const questions: Question[] = [
+  {
+    text: "你要的那一步，我这一生都迈不过去。",
+    options: ["甄嬛", "皇后（乌拉那拉·宜修）", "安陵容"],
+    answerIndex: 1,
+    answerCharacter: "皇后（乌拉那拉·宜修）",
+    hint: "多年隐忍后的决绝一问",
+  },
+  {
+    text: "本位分不允许我示弱，谁敢在我面前装可怜。",
+    options: ["甄嬛", "安陵容", "华妃（年世兰）"],
+    answerIndex: 2,
+    answerCharacter: "华妃（年世兰）",
+    hint: "惯于盛气凌人的宠贵口吻",
+  },
+  {
+    text: "若能早些看透这世道，我宁愿从未踏进宫门。",
+    options: ["沈眉庄", "甄嬛", "端妃"],
+    answerIndex: 1,
+    answerCharacter: "甄嬛",
+    hint: "看清荣宠代价后的自省",
+  },
+  {
+    text: "小心翼翼守了一世，到头来不过是一场笑话。",
+    options: ["皇后（乌拉那拉·宜修）", "甄嬛", "华妃（年世兰）"],
+    answerIndex: 0,
+    answerCharacter: "皇后（乌拉那拉·宜修）",
+    hint: "长年如履薄冰后的冷笑",
+  },
+  {
+    text: "出身低微的人，懂得讨好，是为了活下去。",
+    options: ["甄嬛", "皇后（乌拉那拉·宜修）", "安陵容"],
+    answerIndex: 2,
+    answerCharacter: "安陵容",
+    hint: "低位出身者心底的算计",
+  },
+  {
+    text: "这一世若能携手江湖，胜过金殿万般荣华。",
+    options: ["皇上（雍正帝）", "甄嬛", "果郡王（允礼）"],
+    answerIndex: 2,
+    answerCharacter: "果郡王（允礼）",
+    hint: "常把远方与自由挂在嘴边",
+  },
+  {
+    text: "这山河社稷，要我舍下一切儿女情长。",
+    options: ["果郡王（允礼）", "皇后（乌拉那拉·宜修）", "皇上（雍正帝）"],
+    answerIndex: 2,
+    answerCharacter: "皇上（雍正帝）",
+    hint: "更看重天下而非一人悲欢",
+  },
+  {
+    text: "与其争一时宠爱，不如守住自己的清白和安稳。",
+    options: ["沈眉庄", "甄嬛", "敬妃"],
+    answerIndex: 0,
+    answerCharacter: "沈眉庄",
+    hint: "向来不喜争锋却守礼周全",
+  },
+  {
+    text: "在这深墙之内，活着本身就是一道难题。",
+    options: ["甄嬛", "太后", "端妃"],
+    answerIndex: 2,
+    answerCharacter: "端妃",
+    hint: "久居偏殿，对世事一目了然",
+  },
+  {
+    text: "若到最后什么都留不住，也别叫旁人如愿。",
+    options: ["安陵容", "皇后（乌拉那拉·宜修）", "华妃（年世兰）"],
+    answerIndex: 2,
+    answerCharacter: "华妃（年世兰）",
+    hint: "爱恨极端的人说得出这样的话",
+  },
+  {
+    text: "我真正想做的，只是那个从前无忧的人。",
+    options: ["安陵容", "沈眉庄", "甄嬛"],
+    answerIndex: 2,
+    answerCharacter: "甄嬛",
+    hint: "曾经单纯，如今回望自觉陌生",
+  },
+  {
+    text: "曾经求而不得，如今不过是心如止水。",
+    options: ["皇后（乌拉那拉·宜修）", "甄嬛", "华妃（年世兰）"],
+    answerIndex: 1,
+    answerCharacter: "甄嬛",
+    hint: "曾将一句「求不得」记在心里",
+  },
+  {
+    text: "被夺走的荣耀，总有一日要亲手讨回来。",
+    options: ["皇后（乌拉那拉·宜修）", "安陵容", "华妃（年世兰）"],
+    answerIndex: 2,
+    answerCharacter: "华妃（年世兰）",
+    hint: "一味执着于权势荣耀的性子",
+  },
+  {
+    text: "这地方从来讲的是利字，理字只能靠边站。",
+    options: ["太后", "甄嬛", "皇后（乌拉那拉·宜修）"],
+    answerIndex: 2,
+    answerCharacter: "皇后（乌拉那拉·宜修）",
+    hint: "最明白「利」字比「情」字重要的人",
+  },
+  {
+    text: "在这里，别人给你的，随时也能收回去。",
+    options: ["皇后（乌拉那拉·宜修）", "甄嬛", "太后"],
+    answerIndex: 2,
+    answerCharacter: "太后",
+    hint: "见得多了，对人情冷暖早已看透",
+  },
+  {
+    text: "我所盼望的，不过是身边的人都能平安无事。",
+    options: ["敬妃", "端妃", "沈眉庄"],
+    answerIndex: 2,
+    answerCharacter: "沈眉庄",
+    hint: "把安稳看得比高位更重的人",
+  },
+  {
+    text: "你心思太重，迟早会被这份执念拖入深渊。",
+    options: ["甄嬛", "华妃（年世兰）", "沈眉庄"],
+    answerIndex: 2,
+    answerCharacter: "沈眉庄",
+    hint: "比旁人更看得清他人执念",
+  },
+  {
+    text: "柔弱的外表，最容易让人忘了刀也可以藏在袖里。",
+    options: ["甄嬛", "敬妃", "安陵容"],
+    answerIndex: 2,
+    answerCharacter: "安陵容",
+    hint: "温柔外表下也藏着锋利心思",
+  },
+  {
+    text: "自从迈进宫门那一刻起，很多路就再也回不了头。",
+    options: ["敬妃", "端妃", "甄嬛"],
+    answerIndex: 2,
+    answerCharacter: "甄嬛",
+    hint: "曾经天真相许，后来只剩感慨",
+  },
+  {
+    text: "当信任崩塌时，再多柔情蜜语也只是空言。",
+    options: ["皇后（乌拉那拉·宜修）", "安陵容", "甄嬛"],
+    answerIndex: 2,
+    answerCharacter: "甄嬛",
+    hint: "尝过被辜负后才懂信任之重",
+  },
+  {
+    text: "身在高位之人，难得只做一个普通丈夫。",
+    options: ["果郡王（允礼）", "太后", "皇上（雍正帝）"],
+    answerIndex: 2,
+    answerCharacter: "皇上（雍正帝）",
+    hint: "时常在情与势之间权衡的人",
+  },
+  {
+    text: "在你眼里，我不过是个被遗忘在角落的人。",
+    options: ["华妃（年世兰）", "安陵容", "皇后（乌拉那拉·宜修）"],
+    answerIndex: 2,
+    answerCharacter: "皇后（乌拉那拉·宜修）",
+    hint: "名义尊贵却常觉被搁在一旁",
+  },
+  {
+    text: "与其信公道，不如信人心的深浅冷暖。",
+    options: ["太后", "甄嬛", "皇后（乌拉那拉·宜修）"],
+    answerIndex: 2,
+    answerCharacter: "皇后（乌拉那拉·宜修）",
+    hint: "最不信「公道」二字的一位",
+  },
+  {
+    text: "你总把所有事往自己身上揽，这才是最累的地方。",
+    options: ["沈眉庄", "敬妃", "甄嬛"],
+    answerIndex: 2,
+    answerCharacter: "甄嬛",
+    hint: "总想替身边人分担太多的人",
+  },
+  {
+    text: "若有一日轮到我说了算，我盼着旁人不再经历今日之苦。",
+    options: ["甄嬛", "端妃", "敬妃"],
+    answerIndex: 2,
+    answerCharacter: "敬妃",
+    hint: "性情温厚，却也有自己的坚持",
+  },
+  {
+    text: "我并非喜好争斗，只是被逼急了也会伸手。",
+    options: ["华妃（年世兰）", "皇后（乌拉那拉·宜修）", "端妃"],
+    answerIndex: 2,
+    answerCharacter: "端妃",
+    hint: "表面淡漠，实际心思极深",
+  },
+  {
+    text: "你们只管伺候好了，别叫主子操心。",
+    options: ["瓜六", "浣碧", "苏培盛"],
+    answerIndex: 2,
+    answerCharacter: "苏培盛",
+    hint: "最会揣摩上意的内侍",
+  },
+  {
+    text: "跟在她身边久了，连我都舍不得放手。",
+    options: ["浣碧", "沈眉庄", "槿汐姑姑"],
+    answerIndex: 2,
+    answerCharacter: "槿汐姑姑",
+    hint: "一半是侍女一半像长辈",
+  },
+  {
+    text: "我也不过想求一个靠得住的前程。",
+    options: ["安陵容", "敬妃", "浣碧"],
+    answerIndex: 2,
+    answerCharacter: "浣碧",
+    hint: "既羡慕高位也在意出身",
+  },
+  {
+    text: "小人物的性命，往往连说话的份都没有。",
+    options: ["苏培盛", "果郡王（允礼）", "瓜六"],
+    answerIndex: 2,
+    answerCharacter: "瓜六",
+    hint: "常被差遣东奔西跑的小人物",
+  },
+];
+
+export const PAGE_SIZE = 10;
+export const TOTAL_PAGES = Math.ceil(questions.length / PAGE_SIZE);
