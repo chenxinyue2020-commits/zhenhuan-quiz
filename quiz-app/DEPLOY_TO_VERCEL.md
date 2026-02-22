@@ -58,7 +58,7 @@ Since Git is already initialized in `d:\cursor tutorial\`, you can:
    **If using parent directory Git:**
    ```powershell
    cd "d:\cursor tutorial"
-   git remote add origin https://github.com/YOUR_USERNAME/zhenhuan-quiz.git
+   git remote add origin https://github.com/chenxinyue2020-commits/zhenhuan-quiz.git
    git branch -M main
    git push -u origin main
    ```
@@ -66,12 +66,12 @@ Since Git is already initialized in `d:\cursor tutorial\`, you can:
    **If using quiz-app Git:**
    ```powershell
    cd "d:\cursor tutorial\quiz-app"
-   git remote add origin https://github.com/YOUR_USERNAME/zhenhuan-quiz.git
+   git remote add origin https://github.com/chenxinyue2020-commits/zhenhuan-quiz.git
    git branch -M main
    git push -u origin main
    ```
 
-   Replace `YOUR_USERNAME` with your GitHub username.
+   (Username `chenxinyue2020-commits` is already set.)
 
 ### Step 3: Deploy to Vercel
 

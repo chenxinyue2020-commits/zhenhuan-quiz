@@ -1,10 +1,10 @@
 "use client";
 
 import QuizContainer from "@/components/Quiz/QuizContainer";
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export default function QuizPage() {
+function QuizPageContent() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session") || undefined;
 
@@ -20,5 +20,13 @@ export default function QuizPage() {
       </div>
       <QuizContainer sessionId={sessionId} />
     </div>
+  );
+}
+
+export default function QuizPage() {
+  return (
+    <Suspense fallback={<div className="max-w-4xl mx-auto px-4 py-8 text-center text-gray-600">加载中…</div>}>
+      <QuizPageContent />
+    </Suspense>
   );
 }

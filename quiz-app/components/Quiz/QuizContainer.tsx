@@ -112,6 +112,7 @@ export default function QuizContainer({ sessionId }: QuizContainerProps) {
     const selectedOrder = indices.slice(0, testLength);
     setQuestionOrder(selectedOrder);
 
+    const newSessionId = id();
     const newSession = {
       userId: user.id,
       status: "in_progress" as const,
@@ -125,13 +126,11 @@ export default function QuizContainer({ sessionId }: QuizContainerProps) {
       lastUpdatedAt: now,
     };
 
-    const result = await db.transact([
-      db.tx.testSessions[id()].update(newSession),
+    await db.transact([
+      db.tx.testSessions[newSessionId].update(newSession),
     ]);
 
-    if (result?.testSessions?.[0]?.id) {
-      setCurrentSessionId(result.testSessions[0].id);
-    }
+    setCurrentSessionId(newSessionId);
   };
 
   const saveProgress = async (newAnswers: Map<number, number>) => {

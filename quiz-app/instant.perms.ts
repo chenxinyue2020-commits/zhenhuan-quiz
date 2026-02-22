@@ -12,10 +12,10 @@ const rules = {
   },
   userStats: {
     allow: {
-      view: true,
+      view: "true",
       create: "auth.id != null && auth.id == data.userId",
       update: "auth.id != null && auth.id == data.userId",
-      delete: false,
+      delete: "false",
     },
   },
 } satisfies InstantRules;
